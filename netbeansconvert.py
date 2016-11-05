@@ -104,5 +104,8 @@ def main():
 
 
 if __name__ == '__main__':
-    xml_files_path = "/usr/etc/"
+    if not "/usr/bin" in __file__: ## if not installed then use ./etc
+        xml_files_path = "./etc/"
+    else:
+        xml_files_path = "/usr/etc/" # else use /usr/etc/
     main()

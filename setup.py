@@ -10,5 +10,5 @@ setup(
     author_email='jos67@aber.ac.uk',
     description='Creates necessary config files for a C project to be a netbeans project.',
     scripts=["netbeansconvert.py", "nbconvert"],
-    data_files=[("etc", ["configurations.xml", "Makefile", "project.xml"])]
+    data_files=[("etc", ["etc/configurations.xml", "etc/Makefile", "etc/project.xml"])]
 )
