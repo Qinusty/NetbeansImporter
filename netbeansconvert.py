@@ -83,7 +83,8 @@ def create_nbproject(directory):
 
 
 def main():
-    directory = input("Enter base directory of C source code: ")
+    # TODO: add args check for custom dir
+    directory = os.getcwd()
     if not directory.endswith("/"):
         directory += "/"
     print(directory)
@@ -105,5 +106,3 @@ if __name__ == '__main__':
     if xml_files_path is "":
         xml_files_path = "."
     main()
-
-#TODO: Add path as args and if left blank then do '.'
