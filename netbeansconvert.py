@@ -1,5 +1,4 @@
 import xml.etree.cElementTree as ET
-import xml
 from os import walk
 import os
 import shutil
@@ -22,7 +21,7 @@ def get_files(directory):
                     sources.append(new_dir + f)
                 elif f.endswith(".h"):
                     headers.append(new_dir + f)
-    return (sources, headers)
+    return sources, headers
 
 
 def modify_project(directory):
@@ -40,7 +39,7 @@ def modify_config(config_path, src, headers):
     root = config.getroot()
     logical_root = root[0]
     print("Adding files to \"logical folders\"")
-    ## add the files to logical folders
+    # add the files to logical folders
     for elem in logical_root.getchildren():
         if elem.attrib['name'] == "HeaderFiles":
             for header in headers:
@@ -51,7 +50,7 @@ def modify_config(config_path, src, headers):
                 newelem = ET.SubElement(elem, "itemPath")
                 newelem.text = source
     print("Configuring build configs")
-    ## add conf data stuff
+    # add conf data stuff
     conf_root = root.find("./confs")
     # copy the files
     allfiles = src.copy()
@@ -104,8 +103,8 @@ def main():
 
 
 if __name__ == '__main__':
-    if not "/usr/bin" in __file__: ## if not installed then use ./etc
+    if not "/usr/bin" in __file__:  # if not installed then use ./etc
         xml_files_path = "./etc/"
     else:
-        xml_files_path = "/usr/etc/" # else use /usr/etc/
+        xml_files_path = "/usr/etc/"  # else use /usr/etc/
     main()
