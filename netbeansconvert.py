@@ -76,7 +76,9 @@ def create_nbproject(directory):
         shutil.rmtree(nbdir)
     os.mkdir(nbdir)
     new_config_path = nbdir + "configurations.xml"
-    shutil.copyfile(xml_files_path + "/Makefile", directory + "Makefile")
+    if not os.path.exists(xml_files_path + "/Makefile"): # only copy makefile if project doesn't already have one.
+        # TODO: possibly support getting Makefile from within subdirectories when getting source/header files.
+        shutil.copyfile(xml_files_path + "/Makefile", directory + "Makefile")
     shutil.copyfile(xml_files_path + "/project.xml", nbdir + "project.xml")
     shutil.copyfile(xml_files_path + "/configurations.xml", new_config_path)
     return new_config_path
@@ -102,7 +104,5 @@ def main():
 
 
 if __name__ == '__main__':
-    xml_files_path = os.path.dirname(str(__file__))
-    if xml_files_path is "":
-        xml_files_path = "."
+    xml_files_path = "/usr/etc/"
     main()
